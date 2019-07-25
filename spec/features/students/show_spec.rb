@@ -17,14 +17,20 @@ RSpec.describe 'As a User' do
 
   it "when I visit a students show page" do
     visit student_path(@tyler)
+    expect(page).to have_content(@tyler.name)
 
-    within "#student-#{@tyler.id}" do
-      expect(page).to have_content(@tyler.name)
+    within "#course-#{@calculus.id}" do
       expect(page).to have_content(@calculus.name)
-      expect(page).to have_content(@biology.name)
-      expect(page).to have_content(@history.name)
       expect(page).to have_content(@tyler.student_grades.select("grade").where(course_id: @calculus).first.grade)
+    end
+
+    within "#course-#{@biology.id}" do
+      expect(page).to have_content(@biology.name)
       expect(page).to have_content(@tyler.student_grades.select("grade").where(course_id: @biology).first.grade)
+    end
+
+    within "#course-#{@history.id}" do
+      expect(page).to have_content(@history.name)
       expect(page).to have_content(@tyler.student_grades.select("grade").where(course_id: @history).first.grade)
     end
 
