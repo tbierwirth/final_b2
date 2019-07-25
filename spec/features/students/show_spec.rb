@@ -16,7 +16,7 @@ RSpec.describe 'As a User' do
   end
 
   it "when I visit a students show page" do
-    visit student_show_path(@tyler)
+    visit student_path(@tyler)
 
     within "#student-#{@tyler.id}" do
       expect(page).to have_content(@tyler.name)
