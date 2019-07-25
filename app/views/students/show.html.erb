@@ -1,0 +1,15 @@
+<h1><%= @student.name %>'s Grades</h1>
+<table>
+  <tr>
+    <th>Course</th>
+    <th>Grade</th>
+  </tr>
+  <% @courses.each do |course| %>
+    <section id="course-<%= course.id %>">
+      <tr>
+        <td><%= course.name %></td>
+        <td><%= course.grade %></td>
+      </tr>
+    </section>
+  <% end %>
+</table>
